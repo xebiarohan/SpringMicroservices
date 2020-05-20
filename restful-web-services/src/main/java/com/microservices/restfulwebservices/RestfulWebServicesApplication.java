@@ -5,9 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
-import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.web.servlet.LocaleResolver;
-import org.springframework.web.servlet.i18n.SessionLocaleResolver;
+import org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver;
 
 import java.util.Locale;
 
@@ -18,16 +17,16 @@ public class RestfulWebServicesApplication {
 		SpringApplication.run(RestfulWebServicesApplication.class, args);
 	}
 
-//	@Bean
-//	public MessageSource messageSource() {
-//		ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-//		messageSource.setBasename("messages");
-//		return messageSource;
-//	}
+	@Bean
+	public MessageSource messageSource() {
+		ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+		messageSource.setBasename("messages");
+		return messageSource;
+	}
 
 	@Bean
 	public LocaleResolver localeResolver() {
-		SessionLocaleResolver slr = new SessionLocaleResolver();
+		AcceptHeaderLocaleResolver slr = new AcceptHeaderLocaleResolver();
 		slr.setDefaultLocale(Locale.US);
 		return slr;
 	}

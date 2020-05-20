@@ -16,8 +16,8 @@ import java.util.Locale;
 @RestController
 public class HelloWorld {
 
-//    @Autowired
-//    private MessageSource messageSource;
+    @Autowired
+    private MessageSource messageSource;
 
     @GetMapping("/hello-world")
     public ResponseEntity<String> helloWorld() {
@@ -34,12 +34,11 @@ public class HelloWorld {
         return new HelloWorldBean(String.format("Hello world %s", name));
     }
 
-    @GetMapping("/hello-world-internationalization")
-    public ResponseEntity<String> helloWorldInternationalization(@RequestHeader(name="Accept-Language",required = false) Locale locale) {
-//        return new ResponseEntity<>(
-//                messageSource.getMessage("good.morning.message", null, locale),
-//                HttpStatus.OK);
-        return new ResponseEntity<>("Good morning",HttpStatus.OK);
+    @GetMapping(value = "/hello-world-internationalization")
+    public String helloWorldInternationalization(@RequestHeader(name = "Accept-Language", required = false) Locale locale) {
+        return messageSource.getMessage("good.morning.message", null,
+                locale);
+//        return new ResponseEntity<>("Good morning",HttpStatus.OK);
     }
 
 }

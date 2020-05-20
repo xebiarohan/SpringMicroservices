@@ -5,11 +5,11 @@ import com.microservices.restfulwebservices.dtos.User;
 import com.microservices.restfulwebservices.exceptions.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import javax.annotation.Resource;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -19,7 +19,7 @@ public class UserController {
     @Autowired
     private UserDaoService userDaoService;
 
-    @GetMapping("/users")
+    @GetMapping(value = "/users", produces = {MediaType.APPLICATION_XML_VALUE,MediaType.APPLICATION_JSON_VALUE})
     public List<User> retreiveAllUsers() {
         return userDaoService.findAll();
     }
@@ -37,7 +37,7 @@ public class UserController {
         }
     }
 
-    @PostMapping("/users")
+    @PostMapping(value = "/users")
     public ResponseEntity createUser(@RequestBody @Valid User user) {
         User savedUser = null;
         try {
