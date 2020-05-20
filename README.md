@@ -117,7 +117,7 @@ NOTE : Download chrome JSON formatter to get formatted data
 
 
 
-IMAGE 1 GOES HERE
+![Swagger-API-DOCS](https://github.com/xebiarohan/SpringMicroservices/blob/master/restful-web-services/src/main/resources/images/Swagger1.jpg)
 
 
 We will see the each item here in detail in few seconds.
@@ -128,7 +128,7 @@ BASIC_URL/swagger-ui.html
 example: http://localhost:8080/swagger-ui.html
 
 
-Image 2 GOES here
+![Swagger-UI](https://github.com/xebiarohan/SpringMicroservices/blob/master/restful-web-services/src/main/resources/images/Swagger2.png)
 
 
 
@@ -136,7 +136,7 @@ Image 2 GOES here
 Here we can see all the controllers we have in our project and when we click on the Expand Operations we can see All the APIs in that controller with all the details.
 
 
-Image 3 goes here.
+![Swagger-UI](https://github.com/xebiarohan/SpringMicroservices/blob/master/restful-web-services/src/main/resources/images/Swagger3.png)
 
 
 
@@ -158,8 +158,3 @@ Image 3 goes here.
 
 
 
-
-
-
-URLs : http://localhost:8080/swagger-ui.html
-     : http://localhost:8080/v2/api-docs
