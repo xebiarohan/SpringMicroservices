@@ -221,26 +221,25 @@ If we see here we can see that we have User GET service. All the information lik
 It is used to list all the other POJO classes which we are using in out APIs like :
 
 ```java
-"definitions": {
-"ResponseEntity": {...},
-"User": {
-"type": "object",
-"properties": {
-"birthDate": {
-"type": "string",
-"format": "date-time"
-},
-"id": {
-"type": "integer",
-"format": "int32"
-},
-"name": {
-"type": "string"
-}
-},
-"description": "User description"
-}
-}
+   "definitions":{
+      "User":{
+         "type":"object",
+         "properties":{
+            "birthDate":{
+               "type":"string",
+               "format":"date-time"
+            },
+            "id":{
+               "type":"integer",
+               "format":"int32"
+            },
+            "name":{
+               "type":"string"
+            }
+         }
+      },
+      "description":"User description"
+   }
 ```
 
 Here we can see User POJO with all the variables with there datatype is mentioned.
