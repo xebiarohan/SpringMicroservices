@@ -264,13 +264,116 @@ Here we can see all the controllers we have in our project and when we click on 
 
 
 #### Advance Configuration.
+In the info tag we gets the meta data related to out project like title,version,description, basePath etc.
+
+Or if we want to add some extra meta data we can do it by overriding the default information like :
+
+```java
+@Configuration
+@EnableSwagger2
+public class SwaggerConfig {
+
+    public static final Contact DEFAULT_CONTACT = new Contact("Rohan Aggarwal",
+            "https://github.com/xebiarohan", "aggarwal.rohan17@gmail.com");
+
+    private static final ApiInfo DEFAULT_API_INFO = new ApiInfo("Interesting title",
+            "Interesting description", "1.0", "urn:tos", DEFAULT_CONTACT,
+            "Apache 2.0", "http://www.apache.org/licenses/LICENSE-2.0");
+	    
+    private static final Set<String> DEFAULT_PRODUCES_AND_CONSUMES =
+            new HashSet<>(Arrays.asList("application/xml", "application/json"));
+
+    @Bean
+    public Docket api() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .apiInfo(DEFAULT_API_INFO)                              
+                .produces(DEFAULT_PRODUCES_AND_CONSUMES)
+                .consumes(DEFAULT_PRODUCES_AND_CONSUMES);
+    }
+}
+
+```
+So if you see the api method we are doing 3 things here :
+
+1. Overriding the default information with custom info.
+2. Setting a new meta data "produces" and setting its value.
+3. Setting a new meta data "consumes" and setting its value.
+
+So out docs will look like this :
+
+
+swagger4 image goes here
 
 
 
+### POJO validations
+We have POJO classes details under definations. details like type , format of each variable but the end used will not be able to know about any validations which we applied on our POJO like min length, date in past etc 
+
+So we can add @ApiModel and @ApiModelProperty in our POJO so that swagger can pick these validations.
+In @ApiModelProperty we can define the notes for each variable.
+
+```java
+@ApiModel(description = "User description")
+public class User {
 
 
+    private Integer id;
 
+    @Size(min = 2,max = 4)
+    @ApiModelProperty(notes="Name should be of minimum 2 characters")
+    private String name;
 
+    @Past
+    @ApiModelProperty(notes = "Birth date should be in past")
+    private Date birthDate;
+
+    public User() {
+    }
+
+    public User(Integer id, String name, Date birthDate) {
+        this.id = id;
+        this.name = name;
+        this.birthDate = birthDate;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", birthDate=" + birthDate +
+                '}';
+    }
+}
+```
+
+So once we add these annotations and notes. we will get these details under descriptions : 
+
+image 5 goes here 
 
 
 
