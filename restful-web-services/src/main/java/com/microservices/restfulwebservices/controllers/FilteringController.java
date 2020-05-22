@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ser.FilterProvider;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 import com.microservices.restfulwebservices.dtos.Employee;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,12 +13,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class FilteringController {
 
+    @Value("${app.title}")
+    private String appTitle;
+
     public Employee getStaticFilteredEmployee() {
         return new Employee("Alpha",3500000,8782378234l);
     }
 
     @GetMapping("/employee")
     public MappingJacksonValue getDynamicFilterEmployee() {
+        System.out.println(appTitle);
         Employee emp = new Employee("Alpha", 3500000, 8782378234l);
         MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(emp);
         SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter
