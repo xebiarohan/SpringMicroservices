@@ -3,14 +3,19 @@ package com.microservices.restfulwebservices.dtos;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+import javax.persistence.*;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.List;
 
 @ApiModel(description = "User description")
+@Entity
+@Table(name = "user")
 public class User {
 
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @Size(min = 2,max = 4)
@@ -20,6 +25,9 @@ public class User {
     @Past
     @ApiModelProperty(notes = "Birth date should be in past")
     private Date birthDate;
+
+    @OneToMany(mappedBy = "user")
+    private List<Post> posts;
 
     public User() {
     }
@@ -52,6 +60,14 @@ public class User {
 
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
     }
 
     @Override
