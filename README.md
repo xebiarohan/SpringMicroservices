@@ -126,15 +126,15 @@ Info contains the meta data of the project. Like the title, description,licence 
 
 ```java
 "info": {
-"description": "Api Documentation",
-"version": "1.0",
-"title": "Api Documentation",
-"termsOfService": "urn:tos",
-"contact": {...},
-"license": {
-"name": "Apache 2.0",
-"url": "http://www.apache.org/licenses/LICENSE-2.0"
-}
+   "description":"Api Documentation",
+   "version":"1.0",
+   "title":"Api Documentation",
+   "termsOfService":"urn:tos",
+   "contact":{...},
+   "license":{
+      "name":"Apache 2.0",
+      "url":"http://www.apache.org/licenses/LICENSE-2.0"
+   }
 }
 ```
 
@@ -155,14 +155,14 @@ It will tag the classes where we have the APIs i.e controllers
 
 ```java
 "tags": [
-{
-"name": "user-controller",
-"description": "User Controller"
-},
-{
-"name": "basic-error-controller",
-"description": "Basic Error Controller"
-}
+   {
+      "name":"user-controller",
+      "description":"User Controller"
+   },
+   {
+      "name":"basic-error-controller",
+      "description":"Basic Error Controller"
+   }
 ]
 ```
 #### paths:
@@ -170,48 +170,51 @@ Its the most important detail. It will tell how many APIs we have, what are the 
 
 ```java
 "paths": {
-"/error": {...},
-"/users": {...},
-"/users/{id}": {...}
+   "/error": {...},
+   "/users": {...},
+   "/users/{id}": {...}
 }
 ```
 If we open 1 API. It contains all the information related to that API
 
 ```java
-"/users": {
-"get": {
-"tags": [
-"user-controller"
-],
-"summary": "retreiveAllUsers",
-"operationId": "retreiveAllUsersUsingGET",
-"consumes": [
-"application/json"
-],
-"produces": [
-"application/xml",
-"application/json"
-],
-"responses": {
-"200": {
-"description": "OK",
-"schema": {
-"type": "array",
-"items": {
-"$ref": "#/definitions/User"
-}
-}
-},
-"401": {
-"description": "Unauthorized"
-},
-"403": {
-"description": "Forbidden"
-},
-"404": {
-"description": "Not Found"
-}
-}
+{
+   "/users":{
+      "get":{
+         "tags":[
+            "user-controller"
+         ],
+         "summary":"retreiveAllUsers",
+         "operationId":"retreiveAllUsersUsingGET",
+         "consumes":[
+            "application/json"
+         ],
+         "produces":[
+            "application/xml",
+            "application/json"
+         ],
+         "responses":{
+            "200":{
+               "description":"OK",
+               "schema":{
+                  "type":"array",
+                  "items":{
+                     "$ref":"#/definitions/User"
+                  }
+               }
+            },
+            "401":{
+               "description":"Unauthorized"
+            },
+            "403":{
+               "description":"Forbidden"
+            },
+            "404":{
+               "description":"Not Found"
+            }
+         }
+      }
+   }
 }
 ```
 
@@ -302,7 +305,7 @@ So if you see the api method we are doing 3 things here :
 So out docs will look like this :
 
 
-swagger4 image goes here
+![Swagger-API-DOCS](https://github.com/xebiarohan/SpringMicroservices/blob/master/restful-web-services/src/main/resources/images/Swagger4.jpg)
 
 
 
@@ -373,16 +376,8 @@ public class User {
 
 So once we add these annotations and notes. we will get these details under descriptions : 
 
-image 5 goes here 
+![Swagger-API-DOCS](https://github.com/xebiarohan/SpringMicroservices/blob/master/restful-web-services/src/main/resources/images/Swagger5.jpg)
 
 
 
-
-
-
-
-
-
-
-
-
+For more Swagger information refer official documentation : https://swagger.io/docs/specification/2-0/basic-structure/
